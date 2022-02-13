@@ -1,4 +1,4 @@
-#include <iostream> 
+#include <iostream>
 #include <iomanip>
 #include <string>
 
@@ -7,9 +7,11 @@ using std::cin;
 using std::endl;
 using std::string;
 
+const int C = 10;
+
 struct data{
     string vardas, pavarde;
-    int nd[10]={0}, egz=0;
+    int nd[C]={0}, egz=0;
     double rez=0, mediana=0;
 };
 
@@ -25,7 +27,7 @@ int main()
     data* mas = new data[3];
     int mok = 3;
     cout << "---------------------------------------------------------------- " << endl;
-
+    cout << "Rasykite 0, jei pazymiai baigiasi" << endl;
     for(int i =0; i<mok; i++){
         ivestis(mas[i]);
     }
@@ -59,27 +61,31 @@ int main()
 
 
 void ivestis(data& temp){
-    int n = 3;
+    int n=0;
+    int k=1;
     double vidurkis = 0;
-    int paz[n+1];
-
+    int paz[C];
 
     cout << "Iveskite varda: "; cin >> temp.vardas;
     cout << "Iveskite pavarde: "; cin >> temp.pavarde;
-    for(int i = 0; i < n; i++){
-        cout << "Iveskite " << i + 1 << " - a pazymi: ";
-        cin >> temp.nd[i];
-        paz[i] = temp.nd[i];    // laikinas masyvas medianai skaiciuoti
-        vidurkis += temp.nd[i];
+    while(k){    //
+        cout << "Iveskite " << n + 1 << " - a pazymi: ";
+        cin >> temp.nd[n];  k = temp.nd[n];
+            // laikinas masyvas medianai skaiciuoti
+        vidurkis += temp.nd[n];
+        if(temp.nd[n]!=0) {
+                paz[n] = temp.nd[n];
+                n++;
+        }
     }
     vidurkis = vidurkis/n;
-    cout << "Iveskite egzamino ivertinima: "; cin >> temp.egz; paz[n]=temp.egz;
+    cout << "Iveskite egzamino ivertinima: "; cin >> temp.egz;  paz[n]=temp.egz;
     temp.rez=vidurkis*0.4+temp.egz*0.6;
 
     // medianos skaiciavimas
     rikiuok(paz, n+1);
     if ((n+1)%2==1){
-        temp.mediana=paz[n+1/2];
+        temp.mediana=paz[(n+1)/2];
     }
     else{
        temp.mediana=(paz[(n+1)/2] + paz[((n+1)/2)-1])/2.0;

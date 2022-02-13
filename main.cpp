@@ -33,19 +33,19 @@ int main()
     }
 
     cout << "---------------------------------------------------------------- " << endl;
-    cout << "Jei norite Vidurkio: rasykite â€“ 1, jei norite Medianos rasykite â€“ 0 " << endl;
+    cout << "Jei norite Vidurkio: rasykite – 1, jei norite Medianos rasykite – 0 " << endl;
     int a;
     cin >> a;
 
     if (a==1){
-        cout << std::left << std::setw(10) << "Vardas " << std::setw(10) << "PavardÄ— " << std::setw(10) << "Galutinis (Vid.) " << endl;
+        cout << std::left << std::setw(10) << "Vardas " << std::setw(10) << "Pavardë " << std::setw(10) << "Galutinis (Vid.) " << endl;
         cout << "---------------------------------------------------------------- " << endl;
             for(int i = 0; i<mok; i++){
                 isved(mas[i]);
             }
     }
     else{
-        cout << std::left << std::setw(10) << "Vardas " << std::setw(10) << "PavardÄ— " << std::setw(10) << "Galutinis (Med.) " << endl;
+        cout << std::left << std::setw(10) << "Vardas " << std::setw(10) << "Pavardë " << std::setw(10) << "Galutinis (Med.) " << endl;
         cout << "---------------------------------------------------------------- " << endl;
             for(int i = 0; i<mok; i++){
                 isvedmediana(mas[i]);

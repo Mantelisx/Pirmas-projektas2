@@ -10,12 +10,13 @@ using std::string;
 struct data{
     string vardas, pavarde;
     int nd[10]={0}, egz=0;
-    double rez=0;
+    double rez=0, mediana=0;
 };
 
 void ivestis(data& temp);
 void isved(data& temp);
-bool check_number(string str);  // tikrina ar numeris
+void isvedmediana(data& temp);
+void rikiuok(int M[], int n);
 
 int main()
 {
@@ -23,17 +24,31 @@ int main()
     data A;
     data* mas = new data[3];
     int mok = 3;
+    cout << "---------------------------------------------------------------- " << endl;
 
     for(int i =0; i<mok; i++){
         ivestis(mas[i]);
     }
 
-    cout << std::left << std::setw(10) << "Vardas " << std::setw(10) << "Pavardė " << std::setw(10) << "Galutinis (Vid.) " << endl;
     cout << "---------------------------------------------------------------- " << endl;
+    cout << "Jei norite Vidurkio: rasykite – 1, jei norite Medianos rasykite – 0 " << endl;
+    int a;
+    cin >> a;
 
-   for(int i = 0; i<mok; i++){
-    isved(mas[i]);
-   }
+    if (a==1){
+        cout << std::left << std::setw(10) << "Vardas " << std::setw(10) << "Pavardė " << std::setw(10) << "Galutinis (Vid.) " << endl;
+        cout << "---------------------------------------------------------------- " << endl;
+            for(int i = 0; i<mok; i++){
+                isved(mas[i]);
+            }
+    }
+    else{
+        cout << std::left << std::setw(10) << "Vardas " << std::setw(10) << "Pavardė " << std::setw(10) << "Galutinis (Med.) " << endl;
+        cout << "---------------------------------------------------------------- " << endl;
+            for(int i = 0; i<mok; i++){
+                isvedmediana(mas[i]);
+            }
+    }
 
     delete[] mas;
     system("pause");
@@ -46,16 +61,29 @@ int main()
 void ivestis(data& temp){
     int n = 3;
     double vidurkis = 0;
+    int paz[n+1];
+
+
     cout << "Iveskite varda: "; cin >> temp.vardas;
     cout << "Iveskite pavarde: "; cin >> temp.pavarde;
     for(int i = 0; i < n; i++){
         cout << "Iveskite " << i + 1 << " - a pazymi: ";
         cin >> temp.nd[i];
+        paz[i] = temp.nd[i];    // laikinas masyvas medianai skaiciuoti
         vidurkis += temp.nd[i];
     }
     vidurkis = vidurkis/n;
-    cout << "Iveskite egzamino ivertinima: "; cin >> temp.egz;
+    cout << "Iveskite egzamino ivertinima: "; cin >> temp.egz; paz[n]=temp.egz;
     temp.rez=vidurkis*0.4+temp.egz*0.6;
+
+    // medianos skaiciavimas
+    rikiuok(paz, n+1);
+    if ((n+1)%2==1){
+        temp.mediana=paz[n+1/2];
+    }
+    else{
+       temp.mediana=(paz[(n+1)/2] + paz[((n+1)/2)-1])/2.0;
+    }
 }
 
 void isved(data& temp){
@@ -63,4 +91,24 @@ void isved(data& temp){
     cout << std::setw(10) << std::fixed << std::setprecision(2) <<temp.rez << " " << endl;
 }
 
+void isvedmediana(data& temp){
+    cout << std::left << std::setw(10) << temp.vardas << " " << std::setw(10) << temp.pavarde;
+    cout << std::setw(10) << std::fixed << std::setprecision(2) <<temp.mediana << " " << endl;
+}
+
+void rikiuok(int M[], int n){
+    int t;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=i+1;j<n;j++)
+		{
+			if(M[i]>M[j])
+			{
+				t=M[i];
+				M[i]=M[j];
+				M[j]=t;
+			}
+		}
+	}
+}
 

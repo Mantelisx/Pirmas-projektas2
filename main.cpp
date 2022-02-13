@@ -5,7 +5,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
-using std::cout;
+using std::cout; 
 using std::cin;
 using std::endl;
 using std::string;

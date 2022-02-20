@@ -259,4 +259,3 @@ void rikiuok(int M[], int n){
 		}
 	}
 }
-

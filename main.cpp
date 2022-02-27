@@ -2,13 +2,9 @@
 #include <iomanip>
 #include <string>
 #include <vector>
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
 #include <iterator>
 #include <algorithm>
-
-//#include <stdio.h>
-//#include <ctype.h>
+#include <random>
 
 using std::cout;
 using std::cin;
@@ -21,54 +17,64 @@ const int C = 10;
 
 struct data{
     string vardas, pavarde;
-    int nd[C]={0}, egz=0;
+    int nd[C] = {0}, egz=0;
     double rez=0, mediana=0;
-    //std::vector<int>v;
+
 };
 
 void ivestis(data& temp);
 void isved(const data& temp);
 void isvedmediana(const data& temp);
 void rikiuok(int M[], int n);
-void ivestis1(data& temp);
+void ivestis1(data& temp, int kiek);
+bool isNumber(const string& s);
 
-bool isNumber(const string& s)
-{
-    for (char const &ch : s) {
-        if (std::isdigit(ch) == 0)
-            return false;
-    }
-    return true;
- }
 
 int main()
 {
     setlocale(LC_ALL, "Lithuanian");
-    int mok = 3;    // nustatomas mokiniu skaicius
-    //data* mas = new data[mok];
+    int mok = 0;    // nustatomas mokiniu skaicius
     vector<data> sarasas;
     data laik;
-    sarasas.reserve(mok);
     string abc;
+    string dar;
+
     cout << "---------------------------------------------------------------- " << endl;
-    cout << "Ar norite, kad pazymius programa generuotu atsitiktinai? 1 – Taip, 0 – Ne" << endl;
-    cin >> abc;
 
-    if(isNumber(abc)){
+            do{
+                mok++;
+                sarasas.reserve(mok);
+                cout << "Ar norite kad " << mok << " -am(ai) mokiniui(-ei) pazymiai butu generuojami atsitiktinai? (bet koks simbolis) - taip, 0 - ne" << endl;
+                cin >> abc;
+                if(abc == "0"){
+                    ivestis(laik);
+                    sarasas.push_back(laik);
+                }
+                else {
+                    cout << "Kiek nd pazymiu turi mokinys? (max - " << C << " )" << endl;
+                    cin >> abc;
+                    while(!(isNumber(abc)) || (std::stoi(abc) > 10 || std::stoi(abc) < 0) ){
+                        cout << "Ivedete blogai, veskite dar karta " << endl;
+                        cin >> abc;
+                    }
+                    ivestis1(laik, std::stoi(abc));
+                    sarasas.push_back(laik);
+                }
+                cout << "Ar norite prideti dar viena mokini? (bet koks simbolis) - taip, 0 - ne" << endl;
+                cin >> dar;
+                }while(dar!="0");
 
-        if(abc=="0"){
-            cout << "Rasykite 0, jei pazymiai baigiasi (max nd pazymiu yra 10)" << endl;
-            for(int i =0; i<mok; i++){
-                ivestis(laik);
-                sarasas.push_back(laik);
-            }
 
     cout << "---------------------------------------------------------------- " << endl;
     cout << "Jei norite Vidurkio: rasykite – 1, jei norite Medianos rasykite – 0 " << endl;
 
     cin >> abc;
 
-            if(isNumber(abc)){
+    while((abc!="1")&&(abc!="0")){
+        cout << "Ivedete blogai, veskite dar karta " << endl;
+        cin >> abc;
+    }
+
 
                 if (abc=="1"){
                     cout << std::left << std::setw(10) << "Vardas " << std::setw(10) << "Pavarde " << std::setw(10) << "Galutinis (Vid.) " << endl;
@@ -85,62 +91,21 @@ int main()
                         isvedmediana(el);
                     }
                 }
-            }
-            else cout << "galbut ivedete raide, is naujo paleiskite programa" << endl;
 
-        }
-
-        else if(abc=="1"){
-
-            for(int i =0; i<mok; i++){
-                ivestis1(laik);
-                sarasas.push_back(laik);
-            }
-
-            cout << "---------------------------------------------------------------- " << endl;
-            cout << "Jei norite Vidurkio: rasykite – 1, jei norite Medianos rasykite – 0 " << endl;
-
-            cin >> abc;
-
-            //////////////////////////////
-            if(isNumber(abc)){
-
-                if (abc=="1"){
-                    cout << std::left << std::setw(10) << "Vardas " << std::setw(10) << "Pavarde " << std::setw(10) << "Galutinis (Vid.) " << endl;
-                    cout << "---------------------------------------------------------------- " << endl;
-                    for(const auto &el : sarasas){
-                        isved(el);
-                    }
-                }
-                else if(abc=="0"){
-                    cout << std::left << std::setw(10) << "Vardas " << std::setw(10) << "Pavarde " << std::setw(10) << "Galutinis (Med.) " << endl;
-                    cout << "---------------------------------------------------------------- " << endl;
-                    for(const auto &el : sarasas){
-                        isvedmediana(el);
-                    }
-                }
-                else cout << "galbut ivedete raide (ar ne ta skaiciu), is naujo paleiskite programa" << endl;
-            }
-            else cout << "galbut ivedete raide, is naujo paleiskite programa" << endl;
-        }
-        else cout << "galbut ivedete raide (ar ne ta skaiciu), is naujo paleiskite programa" << endl;
-
-    }
-
-    else {
-        cout << "ivesta blogai, leiskite programa is naujo (patikrinkite gal irasete raide)" << endl;
-    }
-
-
-
-    //delete[] mas;
     sarasas.clear();
     system("pause");
     return 0;
 }
 
 
+bool isNumber(const string& s){
 
+    for (char const &ch : s) {
+        if (std::isdigit(ch) == 0)
+            return false;
+    }
+    return true;
+ }
 
 void ivestis(data& temp){
     int n=0;
@@ -150,6 +115,9 @@ void ivestis(data& temp){
 
     cout << "Iveskite varda: "; cin >> temp.vardas;
     cout << "Iveskite pavarde: "; cin >> temp.pavarde;
+    cout << "Rasykite 0, jei pazymiai baigiasi (max nd pazymiu yra " << C << " )" << endl;
+
+   // temp.nd.reserve(1);
     while(k && n < C){    //
 
         cout << "Iveskite " << n + 1 << " - a pazymi: ";
@@ -158,17 +126,22 @@ void ivestis(data& temp){
         //s1 = std::to_string(temp.nd[n]);// pavercia i stringa
         if(isNumber(s1) && !(std::stoi(s1) > 10 || std::stoi(s1) < 0) ){
             temp.nd[n] = std::stoi(s1);     // konvertuoja string i int tipa
+            //temp.nd.push_back(std::stoi(s1));
         }
         else {
             temp.nd[n] = 10;
+            //temp.nd.push_back(10);
             cout << "galimai ivedete ne numeri arba netinkama pazymi todel " << n + 1 << " mokiniui(-ei) jis buvo pakeistas i 10" << endl;
         }
 
         k = temp.nd[n];
         vidurkis += temp.nd[n];
+      //  k = temp.nd.back();
+       // vidurkis += temp.nd.back();
 
         if(temp.nd[n]!=0) {
             n++;
+           // temp.nd.reserve(n+1);
         }
     }
 
@@ -193,6 +166,7 @@ void ivestis(data& temp){
 
     // medianos skaiciavimas
     rikiuok(temp.nd, n);
+   // sort(temp.nd.begin(), temp.nd.begin()+n);
     if (n%2==1){
         temp.mediana=temp.nd[n/2]*0.4+temp.egz*0.6;
     }
@@ -201,23 +175,28 @@ void ivestis(data& temp){
     }
 }
 
-void ivestis1(data& temp){
-    int n=0;
+void ivestis1(data& temp, int kiek){
+   // int n=0;
     double vidurkis = 0;
     srand((unsigned) time(0));
+   // temp.nd.reserve(kiek);
 
     cout << "Iveskite varda: "; cin >> temp.vardas;
     cout << "Iveskite pavarde: "; cin >> temp.pavarde;
     cout << "pazymiai: " << endl;
-    for(int i = 0; i<10; i++){    //C
+    for(int i = 0; i<kiek; i++){    //C
         temp.nd[i] = (rand() % 10) + 1; // pazymiai nuo 1 iki 10
         cout << temp.nd[i] << " " ;
         vidurkis += temp.nd[i];
-        n++;
+       // n++;
 
     }
 
-    vidurkis = vidurkis/n;
+    if(kiek!=0){
+        vidurkis = vidurkis/kiek;
+    }
+    else vidurkis = 0;
+
     temp.egz=(rand() % 10) + 1;
     cout << endl;
     cout << "Egzaminas: " << temp.egz << endl;
@@ -225,12 +204,13 @@ void ivestis1(data& temp){
     temp.rez=vidurkis*0.4+temp.egz*0.6;
 
     // medianos skaiciavimas
-    rikiuok(temp.nd, n);
-    if (n%2==1){
-        temp.mediana=temp.nd[n/2]*0.4+temp.egz*0.6;
+    rikiuok(temp.nd, kiek);
+    //sort(temp.nd.begin(), temp.nd.begin()+kiek);
+    if (kiek%2==1){
+        temp.mediana=temp.nd[kiek/2]*0.4+temp.egz*0.6;
     }
     else{
-       temp.mediana=((temp.nd[n/2] + temp.nd[(n/2)-1])/2.0)*0.4+temp.egz*0.6;
+       temp.mediana=((temp.nd[kiek/2] + temp.nd[(kiek/2)-1])/2.0)*0.4+temp.egz*0.6;
     }
 }
 

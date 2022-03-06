@@ -17,7 +17,8 @@ const int C = 10;
 
 struct data{
     string vardas, pavarde;
-    int nd[C] = {0}, egz=0;
+    int egz=0;
+    vector<int> nd;
     double rez=0, mediana=0;
 
 };
@@ -112,41 +113,44 @@ void ivestis(data& temp){
     int k=1;
     double vidurkis = 0;
     string s1;
-
+    temp.nd.clear();
     cout << "Iveskite varda: "; cin >> temp.vardas;
     cout << "Iveskite pavarde: "; cin >> temp.pavarde;
     cout << "Rasykite 0, jei pazymiai baigiasi (max nd pazymiu yra " << C << " )" << endl;
 
-   // temp.nd.reserve(1);
-    while(k && n < C){    //
+    temp.nd.reserve(1);
+    while(k && (n < C)){    //
 
         cout << "Iveskite " << n + 1 << " - a pazymi: ";
        // cin >> temp.nd[n];
         cin >> s1;
         //s1 = std::to_string(temp.nd[n]);// pavercia i stringa
         if(isNumber(s1) && !(std::stoi(s1) > 10 || std::stoi(s1) < 0) ){
-            temp.nd[n] = std::stoi(s1);     // konvertuoja string i int tipa
-            //temp.nd.push_back(std::stoi(s1));
+           // temp.nd[n] = std::stoi(s1);     // konvertuoja string i int tipa
+           if(std::stoi(s1)==0){
+               k = 0;
+           }
+           else{
+            temp.nd.push_back(std::stoi(s1));
+            vidurkis += temp.nd.back();
+           }
         }
         else {
-            temp.nd[n] = 10;
-            //temp.nd.push_back(10);
+            //temp.nd[n] = 10;
+            temp.nd.push_back(10);
+            vidurkis += temp.nd.back();
             cout << "galimai ivedete ne numeri arba netinkama pazymi todel " << n + 1 << " mokiniui(-ei) jis buvo pakeistas i 10" << endl;
         }
 
-        k = temp.nd[n];
-        vidurkis += temp.nd[n];
-      //  k = temp.nd.back();
-       // vidurkis += temp.nd.back();
 
-        if(temp.nd[n]!=0) {
+        if(k!=0) {
             n++;
-           // temp.nd.reserve(n+1);
+            temp.nd.reserve(n+1);
         }
     }
 
 
-    if(n!=0){
+    if(temp.nd.size()!=0){
         vidurkis = vidurkis/n;
     }
     else vidurkis = 0;
@@ -165,21 +169,30 @@ void ivestis(data& temp){
     temp.rez=vidurkis*0.4+temp.egz*0.6;
 
     // medianos skaiciavimas
-    rikiuok(temp.nd, n);
-   // sort(temp.nd.begin(), temp.nd.begin()+n);
-    if (n%2==1){
-        temp.mediana=temp.nd[n/2]*0.4+temp.egz*0.6;
-    }
-    else{
-       temp.mediana=((temp.nd[n/2] + temp.nd[(n/2)-1])/2.0)*0.4+temp.egz*0.6;
-    }
+   if(temp.nd.size()==0){
+        temp.mediana=temp.egz*0.6;
+   }
+   else{
+        sort(temp.nd.begin(), temp.nd.begin()+n);
+        //temp.nd.size() vietoj n
+        if (temp.nd.size()%2==1){
+            temp.mediana=temp.nd[temp.nd.size()/2]*0.4+temp.egz*0.6;
+        }
+        else{
+            temp.mediana=((temp.nd[temp.nd.size()/2] + temp.nd[(temp.nd.size()/2)-1])/2.0)*0.4+temp.egz*0.6;
+        }
+   }
+
+    //return temp;
 }
 
 void ivestis1(data& temp, int kiek){
    // int n=0;
     double vidurkis = 0;
     srand((unsigned) time(0));
-   // temp.nd.reserve(kiek);
+    if(kiek>0){
+    temp.nd.reserve(kiek);
+    }
 
     cout << "Iveskite varda: "; cin >> temp.vardas;
     cout << "Iveskite pavarde: "; cin >> temp.pavarde;
@@ -204,14 +217,16 @@ void ivestis1(data& temp, int kiek){
     temp.rez=vidurkis*0.4+temp.egz*0.6;
 
     // medianos skaiciavimas
-    rikiuok(temp.nd, kiek);
-    //sort(temp.nd.begin(), temp.nd.begin()+kiek);
-    if (kiek%2==1){
-        temp.mediana=temp.nd[kiek/2]*0.4+temp.egz*0.6;
+    if(kiek>0){
+        sort(temp.nd.begin(), temp.nd.begin()+kiek);
+        if (kiek%2==1){
+            temp.mediana=temp.nd[kiek/2]*0.4+temp.egz*0.6;
+        }
+        else{
+            temp.mediana=((temp.nd[kiek/2] + temp.nd[(kiek/2)-1])/2.0)*0.4+temp.egz*0.6;
+        }
     }
-    else{
-       temp.mediana=((temp.nd[kiek/2] + temp.nd[(kiek/2)-1])/2.0)*0.4+temp.egz*0.6;
-    }
+    else temp.mediana = temp.egz*0.6;
 }
 
 void isved(const data& temp){
@@ -224,18 +239,3 @@ void isvedmediana(const data& temp){
     cout << std::setw(10) << std::fixed << std::setprecision(2) <<temp.mediana << " " << endl;
 }
 
-void rikiuok(int M[], int n){
-    int t;
-	for(int i=0;i<n;i++)
-	{
-		for(int j=i+1;j<n;j++)
-		{
-			if(M[i]>M[j])
-			{
-				t=M[i];
-				M[i]=M[j];
-				M[j]=t;
-			}
-		}
-	}
-}

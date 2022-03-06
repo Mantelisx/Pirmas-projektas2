@@ -41,6 +41,8 @@ void ivestisfailas(const data& temp);
 void isvedfailas(const data& temp);
 
 void eil_po_eil(std::string read_vardas, std::string write_vardas, vector<data>& sarasas);
+bool compare_pavarde(const string &a, const string &b);
+
 
 
 int main()
@@ -129,7 +131,12 @@ int main()
     system("pause");
     return 0;
 }
-
+/*
+bool compare_pavarde(const string &a, const string &b) {
+    if (a.pavarde == b.pavarde) return a.vardas < b.vardas;
+    return a.pavarde < b.pavarde;
+}
+*/
 void nuskaitymas() {
     ifstream df(duom);
     ofstream rf(rez);
@@ -186,6 +193,13 @@ void nuskaitymas() {
         sarasas.push_back(temp);
         
     }
+
+
+
+    //rikiavimas
+
+   // std::sort(sarasas.begin(), sarasas.end(), compare_pavarde);
+
 
     //isvedimas
     for (const auto& el : sarasas) {

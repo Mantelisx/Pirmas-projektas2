@@ -6,7 +6,7 @@ PC specs:
 
 |  CPU |  HDD |  RAM|
 |---|---|---|
-| Intel Core i5-6600K 3.50 GHz  | Seagate BarraCuda 1TB  | 12 GB DDR4 2666Mhz  |
+| Intel Core i5-6600K 3.50 GHz  | Seagate BarraCuda 1TB 7200rpm | 12 GB DDR4 2666Mhz  |
 
 Testuota programos greitis atskirai naudojant: Vector, List, Deque.
 Gauti rezultatai:

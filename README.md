@@ -73,6 +73,27 @@ Bandymų rezultatai:
 
 ![VectorListDeque1versija](https://user-images.githubusercontent.com/92160605/163723303-8eb9508f-62f7-4b26-89a9-0a167ac54483.png)
 
+Išvada: 2 strategija su List ir Deque konteineriais pasižymėjo greitesniu atlikimu, tačiau su Vector konteineriu labai ilgai užtruko. Lėčiausiai pasirodė 1 strategija.
+
+# Įdiegimo instrukcija #
+
+1. Per linux terminalą nueiname iki projekto failų vietos.
+2. Terminale rašome << make main >> (tik tekstą, be << >> ženklų).
+3. Terminale rašome paleidimo komandą << ./main >> (be << >> ženklų).
+
+Jei norite kompiliuoti tik Circle.cpp į terminalą rašykite << make circle >> (be << >> ženklų).
+Jei norite ištrinti visus failus, kurie baigiasi (xxxxx.o) ir main paleidžiamąjį failą rašykite << make clean >> (be << >> ženklų).
+
+Jei norite generuoti failą, reiks Circle.cpp faile void veiksmaisufailu funkcijoje pasirašyti tokį kodą: (generuotifailus("failo pavadinimas", 10, 7); veiksmaisufailu2("failo pavadinimas");), jei ne pridedamas 100000 įrašų failas.
+
+![ubuntu](https://user-images.githubusercontent.com/92160605/163725742-0d1186ed-5072-452c-bc7f-defa6239a213.png)
+
+
+# Naudojimo instrukcija #
+
+Po Įdiegimo 3 žingsnio ( ./main ):
+
+1. Sekame programoje pateikiamus žingsnius.
 
 
 

@@ -58,3 +58,22 @@ Sistemos parametrai maždaug buvo panašūs.
 ### Išvada ###
 
 List konteineris pasižymi lėtesniu greičiu duomenų nuskaityme ir rūšiavime(10mln.), tuo tarpu Vector ir Deque greitesni(Deque didesnėje bandymų dalyje gavosi greičiausias).
+
+# v1.0 #
+
+Visiems trims konteinerių tipams (vector, list ir deque) išmatuota programos veikimo sparta priklausomai nuo studentų dalijimo į dvi kategorijas strategijos:
+
+1 strategija: Bendro studentai konteinerio (vector, list ir deque tipų) skaidymas (rūšiavimas) į du naujus to paties tipo konteinerius: "vargšiukų" ir "kietiakų". Tokiu būdu tas pats studentas yra dvejuose konteineriuose: bendrame studentai ir viename iš suskaidytų (vargšiukai arba kietiakai).
+
+2 strategija: Bendro studentų konteinerio (vector, list ir deque) skaidymas (rūšiavimas) panaudojant tik vieną naują konteinerį: "vargšiukai". Tokiu būdu, jei studentas yra vargšiukas, jį turime įkelti į naująjį "vargšiukų" konteinerį ir ištrinti iš bendro studentai konteinerio. Po šio žingsnio studentai konteineryje liks vien tik kietiakai.
+
+3 strategija: Bendro studentų konteinerio (vector, list ir deque) skaidymas (rūšiavimas) panaudojant du konteinerius: "vargšiukai", "kietekai". Tokiu būdu, jei studentas yra vargšiukas, jį turime įkelti į naująjį "vargšiukų" konteinerį, po įkėlimo bendras studentų konteineris priskiriamas kietiakams. Po šio žingsnio studentai konteineryje liks vien tik kietiakai.
+
+Bandymų rezultatai:
+
+![VectorListDeque1versija](https://user-images.githubusercontent.com/92160605/163723303-8eb9508f-62f7-4b26-89a9-0a167ac54483.png)
+
+
+
+
+

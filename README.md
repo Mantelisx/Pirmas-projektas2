@@ -73,7 +73,9 @@ Bandymų rezultatai:
 
 ![VectorListDeque1versija](https://user-images.githubusercontent.com/92160605/163723303-8eb9508f-62f7-4b26-89a9-0a167ac54483.png)
 
-Išvada: 2 strategija su List ir Deque konteineriais pasižymėjo greitesniu atlikimu, tačiau su Vector konteineriu labai ilgai užtruko. Lėčiausiai pasirodė 1 strategija.
+### Išvada ###
+
+2 strategija su List ir Deque konteineriais pasižymėjo greitesniu atlikimu, tačiau su Vector konteineriu labai ilgai užtruko. Lėčiausiai pasirodė 1 strategija.
 
 # Įdiegimo instrukcija #
 

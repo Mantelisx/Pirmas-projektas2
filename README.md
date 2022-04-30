@@ -100,11 +100,11 @@ Po Įdiegimo 3 žingsnio ( ./main ):
 
 # v1.1 #
 
-Su Class greičiau.
+Su Class greičiau. (bandymai atliekami Windows, Visual studio 2019)
 
 ![paveikslas](https://user-images.githubusercontent.com/92160605/166116134-f3f9b684-2cc5-4715-a79a-c6371d3704e4.png)
 
-Flagai pridėjo greičio, tačiau jų naudingumą galėjo įtakoti kitos tuo metu veikiančios programos.
+Flagai pridėjo greičio, tačiau jų naudingumą galėjo įtakoti kitos tuo metu veikiančios programos. (bandymai atliekami UBUNTU)
 
 ![paveikslas](https://user-images.githubusercontent.com/92160605/166116149-7e63bf65-ee5c-4be6-894b-d4000f0e555e.png)
 

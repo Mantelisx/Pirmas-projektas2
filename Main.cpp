@@ -15,9 +15,28 @@ int main()
     string abc;
     string dar;
 
+    /*
+    // testavimas
+    data d1;
+    cout << "getVardas: " << d1.getVardas() << endl;
+    d1.changeVardas("labas");
+    data d2 = d1;
+    //d2.setVardas("labas2");
+    //d1 = d2;
+    cout << "getVardas labas: " << d1.getVardas() << endl;
+    cout << "getVardas labas2: " << d2.getVardas() << endl;
+    cout << "--------------------------------" << endl;
+    d1.setRez(10.0);
+    d2.setRez(5.0);
+    data d3 = d1+d2;
+    cout << "d1 + d2 " << d3.getRez() << endl;
+    cout << "d1 + d2 " << (d1+d2).getRez() <<endl;
+    cout << "d1 + d2 Mediana " << d3.getMediana() << endl;
+    */
+
     cout << "---------------------------------------------------------------- " << endl;
 
-    cout << "Jei norite, kad duomenis skaitytu is failo – 1, jei paciam ivesti – 0" << endl;
+    cout << "Jei norite, kad duomenis skaitytu is failo â€“ 1, jei paciam ivesti â€“ 0" << endl;
     trycatch(abc);
     // cin >> abc;
     // while ((abc != "1") && (abc != "0")) {
@@ -57,7 +76,7 @@ int main()
 
 
         cout << "---------------------------------------------------------------- " << endl;
-        cout << "Jei norite Vidurkio: rasykite – 1, jei norite Medianos rasykite – 0 " << endl;
+        cout << "Jei norite Vidurkio: rasykite â€“ 1, jei norite Medianos rasykite â€“ 0 " << endl;
 
         cin >> abc;
 

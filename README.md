@@ -109,3 +109,11 @@ Flagai pridėjo greičio, tačiau jų naudingumą galėjo įtakoti kitos tuo met
 ![paveikslas](https://user-images.githubusercontent.com/92160605/166116149-7e63bf65-ee5c-4be6-894b-d4000f0e555e.png)
 
 
+# v1.2 #
+
+Pridėti bandymų greičiai su flagais per Visual Studio.
+
+![paveikslas](https://user-images.githubusercontent.com/92160605/167283289-71a438a6-9a7c-4e7b-87ba-8cca706b4d56.png)
+
+
+

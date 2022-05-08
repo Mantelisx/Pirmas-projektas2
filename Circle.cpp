@@ -10,7 +10,7 @@ bool compare_pavarde(const string &a, const string &b) {
 vector<data> skirtstykStudentus(vector<data>& studentai) {
     vector<data> kieti, minksti;
     for (const auto& stud : studentai)
-        if (stud.rez < 5)
+        if (stud.getRez() < 5)
             minksti.push_back(stud);
         else
             kieti.push_back(stud);
@@ -23,7 +23,7 @@ vector<data> skirtstykStudentus(vector<data>& studentai) {
 void pirmastrategija(vector<data> studentai, vector<data>& kieti, vector<data>& minksti) {
     
     for (const auto& stud : studentai)
-        if (stud.rez < 5)
+        if (stud.getRez() < 5)
             minksti.push_back(stud);
         else
             kieti.push_back(stud);
@@ -31,13 +31,13 @@ void pirmastrategija(vector<data> studentai, vector<data>& kieti, vector<data>& 
 }
 
 bool Mazesnis(const data& a) {
-    return a.rez < 5;
+    return a.getRez() < 5;
 }
 
 void tobulinta(vector<data>& studentai, vector<data>& minksti) {
 
     for (const auto& stud : studentai)
-        if (stud.rez < 5)
+        if (stud.getRez() < 5)
             minksti.push_back(stud);
        
     studentai.erase(std::remove_if(studentai.begin(), studentai.end(), Mazesnis), studentai.end() );
@@ -51,12 +51,12 @@ vector<data> antrastrategija(vector<data>& studentai) {
     while (i != studentai.size()) {
         if (studentai[i].rez < 5) {
             minksti.push_back(studentai[i]);
-            studentai.erase(studentai.begin() + i); // iðtrinti i-àjá stud.
+            studentai.erase(studentai.begin() + i); // iÅ¡trinti i-Ä…jÄ¯ stud.
         }
         else
             ++i; // pereiti prie kito studento
     }
-    return minksti; // gràþina studentus gavusius skolà
+    return minksti; // grÄ…Å¾ina studentus gavusius skolÄ…
 }
 */
 /*
@@ -65,13 +65,13 @@ vector<data> antrastrategija(vector<data>& studentai) {
     vector<data>::iterator it = studentai.begin();  
     while (it != studentai.end()) {
         if (it->rez < 5) {
-            minksti.push_back(*it); // dereference *it kad gauti elementà
+            minksti.push_back(*it); // dereference *it kad gauti elementÄ…
             it = studentai.erase(it); // perduodame it, gauname it
         }
         else
             ++it; // pereiti prie kito studento
     }
-    return minksti; // gràþina studentus gavusius skolà
+    return minksti; // grÄ…Å¾ina studentus gavusius skolÄ…
 }
 */
 vector<data> antrastrategija(vector<data>& studentai) {
@@ -79,13 +79,13 @@ vector<data> antrastrategija(vector<data>& studentai) {
     vector<data>::iterator it = studentai.end();  // pakeisti nuo pabaigos iki pradzios
     it--;
     std::sort(studentai.begin(), studentai.end(), [](data a, data b) {
-        return a.rez < 5;
+        return a.getRez() < 5;
         
         });
 
     while (it != studentai.begin()) {
-        if (it->rez < 5) {
-            minksti.push_back(*it); // dereference *it kad gauti elementà
+        if (it->getRez() < 5) {
+            minksti.push_back(*it); // dereference *it kad gauti elementÄ…
             studentai.pop_back(); 
 
         }
@@ -93,7 +93,7 @@ vector<data> antrastrategija(vector<data>& studentai) {
         //  else
         it--; // pereiti prie kito studento
     }
-    return minksti; // gràþina studentus gavusius skolà
+    return minksti; // grÄ…Å¾ina studentus gavusius skolÄ…
 }
 
 
@@ -179,6 +179,12 @@ void veiksmaisufailu2(string test) {
     string sw;  // zodis
     int kiekyra = 0;  // kiek is viso  yra elementu
 
+
+    string tempo;
+    double egzas;
+
+
+
     while ((df.peek() != '\n') && (df >> sw)) {
         kiekyra++;
     }
@@ -187,32 +193,40 @@ void veiksmaisufailu2(string test) {
     while (!df.eof()) {
 
         //  cout << kiekyra;
-
+        
           //nuskaitymas
-        df >> temp.vardas >> temp.pavarde;
+        df >> tempo;
+        temp.setVardas(tempo);
+        df >> tempo;
+        temp.setPavarde(tempo);
+        //df >> tempo >> temp.pavarde;
         //cout << "vardas: " << temp.vardas << endl;
         for (int i = 0; i < kiekyra - 3; i++) {
             df >> paz;
-            temp.nd.push_back(paz);
+            temp.getNd().push_back(paz);
+            
             vidurkis += paz;
         }
-        df >> temp.egz;
+        df >> egzas;
+        temp.setEgzaminas(egzas);
+        //df >> temp.egz;
 
        
 
-        if (temp.nd.size() != 0) vidurkis = vidurkis / (kiekyra - 3);
+        if (temp.getNd().size() != 0) vidurkis = vidurkis / (kiekyra - 3);
         else vidurkis = 0;
 
-        temp.rez = vidurkis * 0.4 + temp.egz * 0.6;
+        temp.setRez(vidurkis * 0.4 + temp.getEgzaminas() * 0.6);
         vidurkis = 0;
 
         //mediana
-        sort(temp.nd.begin(), temp.nd.begin() + temp.nd.size());
-        if (temp.nd.size() % 2 == 1) {
-            temp.mediana = temp.nd[temp.nd.size() / 2] * 0.4 + temp.egz * 0.6;
+        //sort(temp.getNd().begin(), temp.getNd().begin() + temp.getNd().size());
+        sort(temp.getNd().begin(), temp.getNd().end());
+        if (temp.getNd().size() % 2 == 1) {
+            temp.setMediana(temp.getNd()[temp.getNd().size() / 2] * 0.4 + temp.getEgzaminas() * 0.6) ;
         }
         else {
-            temp.mediana = ((temp.nd[temp.nd.size() / 2] + temp.nd[(temp.nd.size() / 2) - 1]) / 2.0) * 0.4 + temp.egz * 0.6;
+            temp.setMediana(((temp.getNd()[temp.getNd().size() / 2] + temp.getNd()[(temp.getNd().size() / 2) - 1]) / 2.0) * 0.4 + temp.getEgzaminas() * 0.6) ;
         }
 
         moreoreqfive.push_back(temp);   //------------------------------------------ mano strategija ir 2 strategijai atitinka studentu pilna vektoriu.
@@ -230,7 +244,6 @@ void veiksmaisufailu2(string test) {
         //temp.nd.clear();
         temp = nulinis;
     }
-
 
     auto end = hrClock::now();
     std::chrono::duration<double> diff = end - start; // Skirtumas (s)
@@ -282,8 +295,8 @@ void veiksmaisufailu2(string test) {
    // ---------------------------------------------- mano strategija ir 2 strategija
     start = hrClock::now();    // pradedamas skaiciavimas
     std::sort(moreoreqfive.begin(), moreoreqfive.end(), [](data a, data b) {
-        if (a.rez == b.rez) return a.pavarde < b.pavarde;
-        return a.rez < b.rez;
+        if (a.getRez() == b.getRez()) return a.getPavarde() < b.getPavarde();
+        return a.getRez() < b.getRez();
         });
   //*/
    
@@ -324,7 +337,7 @@ void veiksmaisufailu2(string test) {
     */
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 2 strategija
-    ///*
+    /*
 
     start = hrClock::now();    // pradedamas skaiciavimas
 
@@ -334,11 +347,11 @@ void veiksmaisufailu2(string test) {
     diff = end - start; // Skirtumas (s)
     std::cout << test << " Failo skirtsymas i minkstus ir kietus uztruko: " << diff.count() << " s\n";
 
-    //*/
+    */
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     // mano strategija
-    /*
+    ///*
 
     start = hrClock::now();    // pradedamas skaiciavimas
 
@@ -349,7 +362,7 @@ void veiksmaisufailu2(string test) {
     diff = end - start; // Skirtumas (s)
     std::cout << test << " Failo skirtsymas i minkstus ir kietus uztruko: " << diff.count() << " s\n";
 
-    */
+    //*/
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //isvedimas
@@ -372,9 +385,9 @@ void veiksmaisufailu2(string test) {
     fiveormore << std::left << std::setw(15) << "Vardas " << std::setw(15) << "Pavarde " << std::setw(15) << "Galutinis (Vid.) " << std::setw(15) << "Galutinis (Med.) " << endl;
     fiveormore << "---------------------------------------------------------------- " << endl;
     for (const auto& el : moreoreqfive) {
-        if (el.rez >= 5) {
-            fiveormore << std::left << std::setw(15) << el.vardas << " " << std::setw(15) << el.pavarde;
-            fiveormore << std::setw(15) << std::fixed << std::setprecision(2) << el.rez << std::setw(15) << std::fixed << std::setprecision(2) << el.mediana << " " << endl;
+        if (el.getRez() >= 5) {
+            fiveormore << std::left << std::setw(15) << el.getVardas() << " " << std::setw(15) << el.getPavarde();
+            fiveormore << std::setw(15) << std::fixed << std::setprecision(2) << el.getRez() << std::setw(15) << std::fixed << std::setprecision(2) << el.getMediana() << " " << endl;
         }
     }
 
@@ -393,9 +406,9 @@ void veiksmaisufailu2(string test) {
     lessthanfive << std::left << std::setw(15) << "Vardas " << std::setw(15) << "Pavarde " << std::setw(15) << "Galutinis (Vid.) " << std::setw(15) << "Galutinis (Med.) " << endl;
     lessthanfive << "---------------------------------------------------------------- " << endl;
     for (const auto& el : lessfive) {
-        if (el.rez < 5) {
-            lessthanfive << std::left << std::setw(15) << el.vardas << " " << std::setw(15) << el.pavarde;
-            lessthanfive << std::setw(15) << std::fixed << std::setprecision(2) << el.rez << std::setw(15) << std::fixed << std::setprecision(2) << el.mediana << " " << endl;
+        if (el.getRez() < 5) {
+            lessthanfive << std::left << std::setw(15) << el.getVardas() << " " << std::setw(15) << el.getPavarde();
+            lessthanfive << std::setw(15) << std::fixed << std::setprecision(2) << el.getRez() << std::setw(15) << std::fixed << std::setprecision(2) << el.getMediana() << " " << endl;
         }
     }
 
@@ -423,7 +436,7 @@ void veiksmaisufailu() {
 
     string failiukas = "test";
     int student, ndarb;
-    cout << "Ar norite generuoti failus? bet koks simbolis – taip, 0 – ne" << endl;
+    cout << "Ar norite generuoti failus? bet koks simbolis â€“ taip, 0 â€“ ne" << endl;
     cin >> failiukas;
     while (failiukas != "0") {
         cout << "Failo pavadinimas: " << endl;
@@ -434,11 +447,11 @@ void veiksmaisufailu() {
         cin >> ndarb;
         generuotifailus(failiukas, student, ndarb);
 
-        cout << "Testi generavima? bet koks simbolis – taip, 0 – ne" << endl;
+        cout << "Testi generavima? bet koks simbolis â€“ taip, 0 â€“ ne" << endl;
         cin >> failiukas;
     }
 
-    cout << "Ar norite apdoroti failus? bet koks simbolis – taip, 0 – ne" << endl;
+    cout << "Ar norite apdoroti failus? bet koks simbolis â€“ taip, 0 â€“ ne" << endl;
     cin >> failiukas;
     if(failiukas!="0"){
         ifstream myfile;
@@ -456,14 +469,14 @@ void veiksmaisufailu() {
                 end = hrClock::now();
                 difff = end - st; // Skirtumas (s)
                 cout << endl;
-                cout << failiukas << " Irasu, visas programos sugaiðtas laikas: " << difff.count() << " s\n\n";
+                cout << failiukas << " Irasu, visas programos sugaiÅ¡tas laikas: " << difff.count() << " s\n\n";
                 cout << "---------------------------------------------------------------- " << endl;
             }
             else {
                 cout << "failas " << failiukas << " nerastas." << endl;;
             }
             myfile.close();
-            cout << "Ar norite testi? 1 – taip, 0 – ne " << endl;
+            cout << "Ar norite testi? 1 â€“ taip, 0 â€“ ne " << endl;
             cin >> failiukas;
             if (failiukas == "1") {
                 cout << "Iveskite failo pavadinima: (negali buti 0)" << endl;
@@ -478,7 +491,7 @@ void veiksmaisufailu() {
    // veiksmaisufailu2("failas100000.txt");
    
    // do{ 
-   //     cout << "rasykite bet koki simbolá, jei norite generuoti faila arba 0, jei nenorite testi." << endl;
+   //     cout << "rasykite bet koki simbolÄ¯, jei norite generuoti faila arba 0, jei nenorite testi." << endl;
    //     cin >> tikrinti; 
    //     if (tikrinti != "0") {
            // auto st = hrClock::now();
@@ -497,7 +510,7 @@ void veiksmaisufailu() {
             auto end = hrClock::now();
             std::chrono::duration<double> difff = end - st; // Skirtumas (s)
             cout << endl;
-            cout << "failas1000.txt" <<" Irasu, visas programos sugaiðtas laikas: " << difff.count() << " s\n\n";
+            cout << "failas1000.txt" <<" Irasu, visas programos sugaiÅ¡tas laikas: " << difff.count() << " s\n\n";
             cout << "---------------------------------------------------------------- " << endl;
             system("pause");
 
@@ -506,7 +519,7 @@ void veiksmaisufailu() {
             end = hrClock::now();
             difff = end - st; // Skirtumas (s)
             cout << endl;
-            cout << "failas10000.txt" << " Irasu, visas programos sugaiðtas laikas: " << difff.count() << " s\n\n";
+            cout << "failas10000.txt" << " Irasu, visas programos sugaiÅ¡tas laikas: " << difff.count() << " s\n\n";
             cout << "---------------------------------------------------------------- " << endl;
             system("pause");
     */ /*
@@ -515,7 +528,7 @@ void veiksmaisufailu() {
             end = hrClock::now();
             difff = end - st; // Skirtumas (s)
             cout << endl;
-            cout << "failas100000.txt" << " Irasu, visas programos sugaiðtas laikas: " << difff.count() << " s\n\n";
+            cout << "failas100000.txt" << " Irasu, visas programos sugaiÅ¡tas laikas: " << difff.count() << " s\n\n";
             cout << "---------------------------------------------------------------- " << endl;
             system("pause");
     */ /*
@@ -524,7 +537,7 @@ void veiksmaisufailu() {
             end = hrClock::now();
             difff = end - st; // Skirtumas (s)
             cout << endl;
-            cout << "failas1000000.txt" << " Irasu, visas programos sugaiðtas laikas: " << difff.count() << " s\n\n";
+            cout << "failas1000000.txt" << " Irasu, visas programos sugaiÅ¡tas laikas: " << difff.count() << " s\n\n";
             cout << "---------------------------------------------------------------- " << endl;
             system("pause");
      
@@ -533,14 +546,14 @@ void veiksmaisufailu() {
             end = hrClock::now();
             difff = end - st; // Skirtumas (s)
             cout << endl;
-            cout << "failas10000000.txt" << " Irasu, visas programos sugaiðtas laikas: " << difff.count() << " s\n\n";
+            cout << "failas10000000.txt" << " Irasu, visas programos sugaiÅ¡tas laikas: " << difff.count() << " s\n\n";
             cout << "---------------------------------------------------------------- " << endl;
             system("pause");
     */
           //  auto end = hrClock::now();
          //   std::chrono::duration<double> difff = end - st; // Skirtumas (s)
           //  cout << endl;
-          // cout << test <<" Irasu, visas programos sugaiðtas laikas: " << difff.count() << " s\n\n";
+          // cout << test <<" Irasu, visas programos sugaiÅ¡tas laikas: " << difff.count() << " s\n\n";
           //  cout << "---------------------------------------------------------------- " << endl;
             
     //    }
@@ -567,12 +580,15 @@ void ivestis(data& temp) {
     int k = 1;
     double vidurkis = 0;
     string s1;
-    temp.nd.clear();
-    cout << "Iveskite varda: "; cin >> temp.vardas;
-    cout << "Iveskite pavarde: "; cin >> temp.pavarde;
+
+    string tempo;
+
+    temp.getNd().clear();
+    cout << "Iveskite varda: "; cin >> tempo; temp.setVardas(tempo);
+    cout << "Iveskite pavarde: "; cin >> tempo; temp.setPavarde(tempo);
     cout << "Rasykite 0, jei pazymiai baigiasi (max nd pazymiu yra " << C << " )" << endl;
 
-    temp.nd.reserve(1);
+    temp.getNd().reserve(1);
     while (k && (n < C)) {    //
 
         cout << "Iveskite " << n + 1 << " - a pazymi: ";
@@ -585,26 +601,26 @@ void ivestis(data& temp) {
                 k = 0;
             }
             else {
-                temp.nd.push_back(std::stoi(s1));
-                vidurkis += temp.nd.back();
+                temp.getNd().push_back(std::stoi(s1));
+                vidurkis += temp.getNd().back();
             }
         }
         else {
             //temp.nd[n] = 10;
-            temp.nd.push_back(10);
-            vidurkis += temp.nd.back();
+            temp.getNd().push_back(10);
+            vidurkis += temp.getNd().back();
             cout << "galimai ivedete ne numeri arba netinkama pazymi todel " << n + 1 << " mokiniui(-ei) jis buvo pakeistas i 10" << endl;
         }
 
 
         if (k != 0) {
             n++;
-            temp.nd.reserve(n + 1);
+            temp.getNd().reserve(n + 1);
         }
     }
 
 
-    if (temp.nd.size() != 0) {
+    if (temp.getNd().size() != 0) {
         vidurkis = vidurkis / n;
     }
     else vidurkis = 0;
@@ -614,26 +630,26 @@ void ivestis(data& temp) {
     cout << "Iveskite egzamino ivertinima: "; //cin >> temp.egz;
     cin >> s1;
     if (isNumber(s1) && !(std::stoi(s1) > 10 || std::stoi(s1) < 0)) {
-        temp.egz = std::stoi(s1);
+        temp.setEgzaminas(std::stoi(s1)) ;
     }
     else {
-        temp.egz = 10;
+        temp.setEgzaminas(10);
         cout << "galimai ivedete ne numeri arba netinkama egzamino pazymi todel " << n + 1 << " mokiniui(-ei) jis buvo pakeistas i 10" << endl;
     }
-    temp.rez = vidurkis * 0.4 + temp.egz * 0.6;
+    temp.setRez(vidurkis * 0.4 + temp.getEgzaminas() * 0.6)  ;
 
     // medianos skaiciavimas
-    if (temp.nd.size() == 0) {
-        temp.mediana = temp.egz * 0.6;
+    if (temp.getNd().size() == 0) {
+        temp.setMediana(temp.getEgzaminas() * 0.6) ;
     }
     else {
-        sort(temp.nd.begin(), temp.nd.begin() + n);
+        sort(temp.getNd().begin(), temp.getNd().begin() + n);
         //temp.nd.size() vietoj n
-        if (temp.nd.size() % 2 == 1) {
-            temp.mediana = temp.nd[temp.nd.size() / 2] * 0.4 + temp.egz * 0.6;
+        if (temp.getNd().size() % 2 == 1) {
+            temp.setMediana(temp.getNd()[temp.getNd().size() / 2] * 0.4 + temp.getEgzaminas() * 0.6) ;
         }
         else {
-            temp.mediana = ((temp.nd[temp.nd.size() / 2] + temp.nd[(temp.nd.size() / 2) - 1]) / 2.0) * 0.4 + temp.egz * 0.6;
+            temp.setMediana(((temp.getNd()[temp.getNd().size() / 2] + temp.getNd()[(temp.getNd().size() / 2) - 1]) / 2.0) * 0.4 + temp.getEgzaminas() * 0.6) ;
         }
     }
 
@@ -641,20 +657,21 @@ void ivestis(data& temp) {
 }
 
 void ivestis1(data& temp, int kiek) {
+    string tempo;
     // int n=0;
     double vidurkis = 0;
     srand((unsigned)time(0));
     if (kiek > 0) {
-        temp.nd.reserve(kiek);
+        temp.getNd().reserve(kiek);
     }
 
-    cout << "Iveskite varda: "; cin >> temp.vardas;
-    cout << "Iveskite pavarde: "; cin >> temp.pavarde;
+    cout << "Iveskite varda: "; cin >> tempo; temp.setVardas(tempo);
+    cout << "Iveskite pavarde: "; cin >> tempo; temp.setPavarde(tempo);
     cout << "pazymiai: " << endl;
     for (int i = 0; i < kiek; i++) {    //C
-        temp.nd[i] = (rand() % 10) + 1; // pazymiai nuo 1 iki 10
-        cout << temp.nd[i] << " ";
-        vidurkis += temp.nd[i];
+        temp.getNd()[i] = (rand() % 10) + 1; // pazymiai nuo 1 iki 10
+        cout << temp.getNd()[i] << " ";
+        vidurkis += temp.getNd()[i];
         // n++;
 
     }
@@ -664,23 +681,23 @@ void ivestis1(data& temp, int kiek) {
     }
     else vidurkis = 0;
 
-    temp.egz = (rand() % 10) + 1;
+    temp.setEgzaminas((rand() % 10) + 1 );
     cout << endl;
-    cout << "Egzaminas: " << temp.egz << endl;
+    cout << "Egzaminas: " << temp.getEgzaminas() << endl;
 
-    temp.rez = vidurkis * 0.4 + temp.egz * 0.6;
+    temp.setRez(vidurkis * 0.4 + temp.getEgzaminas() * 0.6) ;
 
     // medianos skaiciavimas
     if (kiek > 0) {
-        sort(temp.nd.begin(), temp.nd.begin() + kiek);
+        sort(temp.getNd().begin(), temp.getNd().begin() + kiek);
         if (kiek % 2 == 1) {
-            temp.mediana = temp.nd[kiek / 2] * 0.4 + temp.egz * 0.6;
+            temp.setMediana(temp.getNd()[kiek / 2] * 0.4 + temp.getEgzaminas() * 0.6) ;
         }
         else {
-            temp.mediana = ((temp.nd[kiek / 2] + temp.nd[(kiek / 2) - 1]) / 2.0) * 0.4 + temp.egz * 0.6;
+            temp.setMediana(((temp.getNd()[kiek / 2] + temp.getNd()[(kiek / 2) - 1]) / 2.0) * 0.4 + temp.getEgzaminas() * 0.6) ;
         }
     }
-    else temp.mediana = temp.egz * 0.6;
+    else temp.setMediana(temp.getEgzaminas() * 0.6) ;
 }
 
 void ivestisfailas(data& temp) {
@@ -688,18 +705,18 @@ void ivestisfailas(data& temp) {
 }
 
 void isved(const data& temp) {
-    cout << std::left << std::setw(10) << temp.vardas << " " << std::setw(10) << temp.pavarde;
-    cout << std::setw(10) << std::fixed << std::setprecision(2) << temp.rez << " " << endl;
+    cout << std::left << std::setw(10) << temp.getVardas() << " " << std::setw(10) << temp.getPavarde();
+    cout << std::setw(10) << std::fixed << std::setprecision(2) << temp.getRez() << " " << endl;
 }
 
 void isvedmediana(const data& temp) {
-    cout << std::left << std::setw(10) << temp.vardas << " " << std::setw(10) << temp.pavarde;
-    cout << std::setw(10) << std::fixed << std::setprecision(2) << temp.mediana << " " << endl;
+    cout << std::left << std::setw(10) << temp.getVardas() << " " << std::setw(10) << temp.getPavarde();
+    cout << std::setw(10) << std::fixed << std::setprecision(2) << temp.getMediana() << " " << endl;
 }
 
 void isvedfailas(const data& temp) {
-    cout << std::left << std::setw(10) << temp.vardas << " " << std::setw(10) << temp.pavarde;
-    cout << std::setw(10) << std::fixed << std::setprecision(2) << temp.rez << std::setw(10) << std::fixed << std::setprecision(2) << temp.mediana << " " << endl;
+    cout << std::left << std::setw(10) << temp.getVardas() << " " << std::setw(10) << temp.getPavarde();
+    cout << std::setw(10) << std::fixed << std::setprecision(2) << temp.getRez() << std::setw(10) << std::fixed << std::setprecision(2) << temp.getMediana() << " " << endl;
 }
 
 void trycatch(string& a) {
@@ -719,7 +736,7 @@ void trycatch(string& a) {
         }
     } while (std::cin.fail() == true);
 }
-
+/*
 void eil_po_eil(std::string read_vardas, std::string write_vardas, vector<data>& sarasas) {
     data laikinas;
     std::vector<std::string> splited;
@@ -763,7 +780,7 @@ void eil_po_eil(std::string read_vardas, std::string write_vardas, vector<data>&
     open_f.close();
     // auto end = std::chrono::high_resolution_clock::now();
     // std::chrono::duration<double> diff = end - start; // Skirtumas (s)
-    // std::cout << "Failo nuskaitymas tesiai á eiluèiø vektoriø uþtruko: " << diff.count() << " s\n";
+    // std::cout << "Failo nuskaitymas tesiai Ä¯ eiluÄiÅ³ vektoriÅ³ uÅ¾truko: " << diff.count() << " s\n";
      //------------------------------------------------------------------------ 
     // start = std::chrono::high_resolution_clock::now();
 
@@ -773,12 +790,12 @@ void eil_po_eil(std::string read_vardas, std::string write_vardas, vector<data>&
 
     // end = std::chrono::high_resolution_clock::now();
     // diff = end - start; // Skirtumas (s)
-    // std::cout << "Failo áraðymas eilutemis ið eiluèiø vektoriaus uþtruko: " << diff.count() << " s\n";
+    // std::cout << "Failo Ä¯raÅ¡ymas eilutemis iÅ¡ eiluÄiÅ³ vektoriaus uÅ¾truko: " << diff.count() << " s\n";
     splited.resize(0);
     //sarasas.resize(0);
 
    // diff = std::chrono::high_resolution_clock::now() - st; // Skirtumas (s)
-   // std::cout << "Visas sugaiðtas laikas: " << diff.count() << " s\n\n";
+   // std::cout << "Visas sugaiÅ¡tas laikas: " << diff.count() << " s\n\n";
 }
 
-
+*/

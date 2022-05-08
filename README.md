@@ -115,5 +115,5 @@ Pridėti bandymų greičiai su flagais per Visual Studio.
 
 ![paveikslas](https://user-images.githubusercontent.com/92160605/167283289-71a438a6-9a7c-4e7b-87ba-8cca706b4d56.png)
 
-
+Padaryta Rule of Three ir sudėties operatorius, kuris sudeda studentų rezultatus ir medianas.
 

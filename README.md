@@ -117,3 +117,8 @@ Pridėti bandymų greičiai su flagais per Visual Studio.
 
 Padaryta Rule of Three ir sudėties operatorius, kuris sudeda studentų rezultatus ir medianas.
 
+# v1.5 #
+
+Sukurta bazinė klasė ir iš jos išvesta studento klasė. Bazinė klasė yra abstrakčioji, t.y. negalima sukurti bazinės klasės tipo objektų (galima sukurti objektus gautus iš bazinės klasės išvestinų).
+
+

@@ -128,7 +128,7 @@ Sukurtas automatinis įdiegimo failas (.msi arba .exe).
 
 # Įdiegimo instrukcija #
 
-1. Atsisiųskite .msi arba .exe įdiegimo failus.
+1. Atsisiųskite .msi arba .exe įdiegimo failus. Pasileiskite vieną iš jų.
 
 ![idiegimas1](https://user-images.githubusercontent.com/92160605/168310548-b9058b36-9901-4f6b-971d-4d3768e2070c.png)
 
@@ -149,10 +149,6 @@ Sukurtas automatinis įdiegimo failas (.msi arba .exe).
 ![idiegimas5](https://user-images.githubusercontent.com/92160605/168311149-fd59089d-08f3-4010-bd41-4f54b546dcd7.png)
 
 Programa instaliuota. Automatikškai bus sukurta Desktop nuoroda. Jei norite ištrinti, eikite į valdymo skydą, kur programos ir funkcijos, ten ją galėsite pašalinti.
-
-
-
-
 
 
 

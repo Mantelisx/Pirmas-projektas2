@@ -122,3 +122,39 @@ Padaryta Rule of Three ir sudėties operatorius, kuris sudeda studentų rezultat
 Sukurta bazinė klasė ir iš jos išvesta studento klasė. Bazinė klasė yra abstrakčioji, t.y. negalima sukurti bazinės klasės tipo objektų (galima sukurti objektus gautus iš bazinės klasės išvestinų).
 
 
+# v2.0 #
+
+Sukurtas automatinis įdiegimo failas (.msi arba .exe).
+
+# Įdiegimo instrukcija #
+
+1. Atsisiųskite .msi arba .exe įdiegimo failus.
+
+![idiegimas1](https://user-images.githubusercontent.com/92160605/168310548-b9058b36-9901-4f6b-971d-4d3768e2070c.png)
+
+2. Atsidarius šiam langui spauskite Next.
+
+![idiegimas2](https://user-images.githubusercontent.com/92160605/168310756-b76b3373-63d6-4656-9556-ebe5f044f2ba.png)
+
+3. Pasirinkite instaliavimo vietą ir spauskite Next.
+
+![idiegimas3](https://user-images.githubusercontent.com/92160605/168310964-9c480398-67dc-4118-b417-a558a80a767b.png)
+
+4. Spauskite Next.
+
+![idiegimas4](https://user-images.githubusercontent.com/92160605/168311106-d31b93f8-446a-40d5-8a6c-5bc5bab39864.png)
+
+5. Spauskite Close.
+
+![idiegimas5](https://user-images.githubusercontent.com/92160605/168311149-fd59089d-08f3-4010-bd41-4f54b546dcd7.png)
+
+Programa instaliuota. Automatikškai bus sukurta Desktop nuoroda. Jei norite ištrinti, eikite į valdymo skydą, kur programos ir funkcijos, ten ją galėsite pašalinti.
+
+
+
+
+
+
+
+
+

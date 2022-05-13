@@ -150,7 +150,7 @@ Sukurtas automatinis įdiegimo failas (.msi arba .exe).
 
 Programa instaliuota. Automatikškai bus sukurta Desktop nuoroda. Jei norite ištrinti, eikite į valdymo skydą, kur programos ir funkcijos, ten ją galėsite pašalinti.
 
-Unix OS atveju pasižiūrėkite V1.0 esančią įdiegimo instrukciją.
+Unix OS atveju pasižiūrėkite V1.0 esančią [įdiegimo instrukciją](/guides/content/editing-an-existing-page#modifying-front-matter).
 
 
 

@@ -150,7 +150,7 @@ Sukurtas automatinis įdiegimo failas (.msi arba .exe).
 
 Programa instaliuota. Automatikškai bus sukurta Desktop nuoroda. Jei norite ištrinti, eikite į valdymo skydą, kur programos ir funkcijos, ten ją galėsite pašalinti.
 
-Unix OS atveju pasižiūrėkite V1.0 esančią [įdiegimo instrukciją](/Mantelisx/Pirmas-projektas2/blob/v2.0/README.md#įdiegimo-instrukcija).
+Unix OS atveju pasižiūrėkite V1.0 esančią [įdiegimo instrukciją](https://github.com/Mantelisx/Pirmas-projektas2/blob/v2.0/README.md#%C4%AFdiegimo-instrukcija).
 
 
 

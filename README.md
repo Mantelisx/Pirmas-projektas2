@@ -79,7 +79,7 @@ Bandymų rezultatai:
 
 # Įdiegimo instrukcija #
 
-1. Per linux terminalą nueiname iki projekto failų vietos.
+1. Per terminalą nueiname iki projekto failų vietos.
 2. Terminale rašome << make main >> (tik tekstą, be << >> ženklų).
 3. Terminale rašome paleidimo komandą << ./main >> (be << >> ženklų).
 

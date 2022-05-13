@@ -159,10 +159,13 @@ Pasileiskite programą.
 A. Programa paklaus ar norėsite duomenis skaitytų iš failo (reikia įvesti (1) ) arba įrašyti pačiam (0).
 
 B.0. Jei pasirinkote (0), tai programa klaus ar norite namų darbų rezultatus generuoti atsitiktinai ar ne. Reiks įvesti vardą, pavardę, namų darbų rezultatus (jei nepasirinkote generuoti atsitiktinai). Galėsite pridėti mokinį. Taip pat pasirinkti galutinio rezultato išvedimą ar tai bus vidurkis ar mediana.
+
 B.0.1 Programa baigia darbą.
 
 B.1. Jei pasirinkote (1) programa duos galimybę generuoti failus (reiks įvesti pavadinimą su gale .txt, studentų skaičių, namų darbų skaičių).
+
 B.1.1 Toliau bus failo apdorojimo procedūra. Galite rinktis ar jos norite ar ne. Jei pasirinksite, kad reikia, tai bus pradėtas failo apdorojimas ir išvedami galutinio rezultato duomenys su vidurkiu ir mediana.
+
 B.1.2 Programa baigia darbą.
 
 

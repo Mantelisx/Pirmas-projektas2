@@ -168,4 +168,8 @@ B.1.1 Toliau bus failo apdorojimo procedūra. Galite rinktis ar jos norite ar ne
 
 B.1.2 Programa baigia darbą.
 
+# Unit testai #
 
+Išmėginta Google Test. Testuoti getteriai, setteriai, klasių operatoriai.
+
+![unit testas](https://user-images.githubusercontent.com/92160605/168447193-4e1718ef-8814-4200-a2d2-31255083015d.png)

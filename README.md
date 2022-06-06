@@ -173,3 +173,21 @@ B.1.2 Programa baigia darbą.
 Išmėginta Google Test. Testuoti getteriai, setteriai, klasių operatoriai.
 
 ![unit testas](https://user-images.githubusercontent.com/92160605/168447193-4e1718ef-8814-4200-a2d2-31255083015d.png)
+
+
+# v2.0G #
+
+Grafinė aplinka
+
+Pridėta grafinė aplinka sukurtiems failams. Po skaičiavimo galima juos atsisiųsti. Taip pat pridėta ir kitų funkcijų. Pvz.: išrikiavimas.
+
+Failas lange randamos pagrindinės funkcijos. Apie lange randama informacija apie programėlę. Informacija lange randama informacija apie taisyklingą naudojimą.
+
+Programos pavyzdys:
+
+![programele](https://user-images.githubusercontent.com/92160605/172203626-a02d6e07-a1fb-4b9b-b3d2-e4970ed2e558.png)
+
+Jei norite generuoti failus rekomenduojame atisiųsti v2.0 versiją arba patiems pasidaryti .txt failą su formatu: Vardas Pavarde ND1 ... ND(sk) Egz. (Vardas1 Pavarde1 10 10 10 10 10 10)
+
+
+
